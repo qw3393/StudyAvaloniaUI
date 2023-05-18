@@ -3,8 +3,8 @@
         xmlns:vm="using:StudyAvaloniaUI.ViewModels"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        mc:Ignorable="d" d:DesignWidth="600" d:DesignHeight="400"
-        Width="500" Height="400"
+        mc:Ignorable="d" d:DesignWidth="1048" d:DesignHeight="630"
+        Width="1048" Height="630"
         x:Class="StudyAvaloniaUI.Views.MainWindow"
         x:DataType="vm:MainWindowViewModel"
         Icon="/Assets/avalonia-logo.ico"
@@ -18,15 +18,46 @@
     
     <Grid RowDefinitions="Auto, *, Auto">
         <!-- Title bar -->
-        <Grid Grid.Row="0" Background="Orange" Height="40" ColumnDefinitions="Auto, Auto, *, Auto, Auto">
-            <Rectangle Grid.Column="0" Fill="Red" Width="40"></Rectangle>
-            <Rectangle Grid.Column="1" Fill="Blue" Width="40"></Rectangle>
+        <Grid Grid.Row="0" Background="#e5e5e5" Height="60" ColumnDefinitions="Auto, Auto, *, Auto, Auto">
+            
+            <Grid.Styles>
+                <Style Selector="Button">
+                    <Setter Property="Background" Value="Transparent"></Setter>
+                    <Setter Property="Width" Value="45"></Setter>
+                </Style>
+                <Style Selector="Button Image">
+                    <Setter Property="Width" Value="25"></Setter>
+                </Style>
+                <Style Selector="Button /template/ContentPresenter">
+                    <Setter Property="Transitions">
+                        <Transitions>
+                            <TransformOperationsTransition Property="RenderTransform" Duration="0:0:0.2"></TransformOperationsTransition>
+                        </Transitions>
+                    </Setter>
+                </Style>
+                <Style Selector="Button:pointerover /template/ContentPresenter">
+                    <Setter Property="Background" Value="Transparent"></Setter>
+                    <Setter Property="RenderTransform" Value="scale(1.11)"></Setter>
+                    <Setter Property="Opacity" Value="0.6"></Setter>
+                </Style>
+            </Grid.Styles>
+            
+            <Button Grid.Column="0">
+                <Image Source="/Assets/Images/UI_Home.png"></Image>
+            </Button>
+            <Button Grid.Column="1">
+                <Image Source="/Assets/Images/UI_Key.png"></Image>
+            </Button>
             <StackPanel Orientation="Horizontal" Grid.Column="2" VerticalAlignment="Center" HorizontalAlignment="Center">
                 <Label FontWeight="Black">AVALONIA</Label>
                 <Label>LOUDNESS METER</Label>
             </StackPanel>
-            <Rectangle Grid.Column="3" Fill="Green" Width="40"></Rectangle>
-            <Rectangle Grid.Column="4" Fill="Yellow" Width="40"></Rectangle>
+            <Button Grid.Column="3">
+                <Image Source="/Assets/Images/UI_Exit.png"></Image>
+            </Button>
+            <Button Grid.Column="4">
+                <Image Source="/Assets/Images/UI_Setting.png"></Image>
+            </Button>
         </Grid>
         
         <!-- Main area -->
@@ -38,7 +69,7 @@
                 <Grid Grid.Row="0" 
                       Margin="10, 0"
                       RowDefinitions="3*, 3*, 3*, 9*, 5*, 4*, 9*, 9*, 9*, 6*, Auto"
-                      ColumnDefinitions="Auto, Auto, *, Auto"
+                      ColumnDefinitions="Auto, *, Auto, Auto"
                 >
                     
                     <Grid.Styles>
@@ -82,12 +113,12 @@
                     
                     <!-- Arrow -->
                     <Canvas Grid.Row="0" Grid.Column="3" Grid.RowSpan="11" Width="20">
-                        <Rectangle Canvas.Top="0" Fill="white" Width="10" Height="20"></Rectangle>
+                        <Rectangle Canvas.Top="0" Fill="white" Width="20" Height="20"></Rectangle>
                     </Canvas>
                 </Grid>
                 
                 <!-- LUFS label -->
-                <Label Grid.Row="1" Foreground="White" FontSize="20" HorizontalAlignment="Center" Margin="0, 0, 0, 0" Content="LUFS"></Label>
+                <Label Grid.Row="1" Foreground="White" FontSize="20" HorizontalAlignment="Center" Margin="0, 5">LUFS</Label>
                 
                 <!-- Volume bar buttons -->
                 <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Center">
@@ -98,11 +129,19 @@
                             <Setter Property="Foreground" Value="White"></Setter>
                             <Setter Property="Background" Value="#7f98c7"></Setter>
                             <Setter Property="CornerRadius" Value="20"></Setter>
-                            <Setter Property="Padding" Value="7, 4"></Setter>
+                            <Setter Property="Padding" Value="7, 2"></Setter>
+                        </Style>
+                        <Style Selector="Button:pointerover /template/ContentPresenter">
+                            <Setter Property="Background" Value="#98acd0"></Setter>
+                        </Style>
+                        <Style Selector="Button:pointerover /template/ContentPresenter">
+                            <Setter Property="TextBlock.Foreground" Value="white"></Setter>
                         </Style>
                     </StackPanel.Styles>
                     
-                    <Button Margin="0, 0, 20, 0">A</Button>
+                    <Button CornerRadius="30" Width="30" Height="30" Padding="3" Margin="0, 0, 20, 0">
+                        <Image Margin="5,0,2,0" Source="/Assets/Images/UI_DoubleArrow.png"></Image>
+                    </Button>
                     <Button>INT-LRA</Button>
                 </StackPanel>
             </Grid>
