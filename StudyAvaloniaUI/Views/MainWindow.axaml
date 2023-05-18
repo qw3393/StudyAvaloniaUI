@@ -3,6 +3,7 @@
         xmlns:vm="using:StudyAvaloniaUI.ViewModels"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:controls="clr-namespace:StudyAvaloniaUI.Views"
         mc:Ignorable="d" d:DesignWidth="1048" d:DesignHeight="630"
         Width="1048" Height="630"
         x:Class="StudyAvaloniaUI.Views.MainWindow"
@@ -13,13 +14,30 @@
     <Design.DataContext>
         <!-- This only sets the DataContext for the previewer in an IDE,
              to set the actual DataContext for runtime, set the DataContext property in code (look at App.axaml.cs) -->
-        <vm:MainWindowViewModel/>
+        <vm:MainWindowViewModel />
     </Design.DataContext>
-    
+
+    <Window.Styles>
+        <Style Selector="Button.small">
+            <Setter Property="FontSize" Value="12"></Setter>
+            <Setter Property="Foreground" Value="White"></Setter>
+            <Setter Property="Background" Value="{DynamicResource BrightBlueBrush}"></Setter>
+            <Setter Property="CornerRadius" Value="20"></Setter>
+            <Setter Property="Padding" Value="7, 2"></Setter>
+        </Style>
+        <Style Selector="Button:pointerover /template/ContentPresenter">
+            <Setter Property="Background" Value="{DynamicResource BrightBlueHoverBrush}"></Setter>
+        </Style>
+        <Style Selector="Button:pointerover /template/ContentPresenter">
+            <Setter Property="TextBlock.Foreground" Value="white"></Setter>
+        </Style>
+    </Window.Styles>
+
     <Grid RowDefinitions="Auto, *, Auto">
         <!-- Title bar -->
-        <Grid Grid.Row="0" Background="#e5e5e5" Height="60" ColumnDefinitions="Auto, Auto, *, Auto, Auto">
-            
+        <Grid Grid.Row="0" Background="{DynamicResource MediumGreyBrush}" Height="60"
+              ColumnDefinitions="Auto, Auto, *, Auto, Auto">
+
             <Grid.Styles>
                 <Style Selector="Button">
                     <Setter Property="Background" Value="Transparent"></Setter>
@@ -41,14 +59,15 @@
                     <Setter Property="Opacity" Value="0.6"></Setter>
                 </Style>
             </Grid.Styles>
-            
+
             <Button Grid.Column="0">
                 <Image Source="/Assets/Images/UI_Home.png"></Image>
             </Button>
             <Button Grid.Column="1">
                 <Image Source="/Assets/Images/UI_Key.png"></Image>
             </Button>
-            <StackPanel Orientation="Horizontal" Grid.Column="2" VerticalAlignment="Center" HorizontalAlignment="Center">
+            <StackPanel Orientation="Horizontal" Grid.Column="2" VerticalAlignment="Center"
+                        HorizontalAlignment="Center">
                 <Label FontWeight="Black">AVALONIA</Label>
                 <Label>LOUDNESS METER</Label>
             </StackPanel>
@@ -59,19 +78,18 @@
                 <Image Source="/Assets/Images/UI_Setting.png"></Image>
             </Button>
         </Grid>
-        
+
         <!-- Main area -->
-        <Grid Grid.Row="1" ColumnDefinitions="Auto, Auto, *" Background="#1a1c20">
+        <Grid Grid.Row="1" ColumnDefinitions="Auto, Auto, *" Background="{DynamicResource DartBlueBrush}">
             <!-- Volume Bar -->
             <Grid Grid.Column="0" Width="150" RowDefinitions="*, Auto, Auto" Margin="0, 20">
-                
+
                 <!-- Volume Meter Gauge-->
-                <Grid Grid.Row="0" 
+                <Grid Grid.Row="0"
                       Margin="10, 0"
                       RowDefinitions="3*, 3*, 3*, 9*, 5*, 4*, 9*, 9*, 9*, 6*, Auto"
-                      ColumnDefinitions="Auto, *, Auto, Auto"
-                >
-                    
+                      ColumnDefinitions="Auto, *, Auto, Auto">
+
                     <Grid.Styles>
                         <Style Selector="Label">
                             <Setter Property="Foreground" Value="White"></Setter>
@@ -80,7 +98,7 @@
                             <Setter Property="Padding" Value="0"></Setter>
                         </Style>
                     </Grid.Styles>
-                    
+
                     <Label Grid.Column="0" Grid.Row="0">-0 --</Label>
                     <Label Grid.Column="0" Grid.Row="1">-3 --</Label>
                     <Label Grid.Column="0" Grid.Row="2">-6 --</Label>
@@ -92,13 +110,13 @@
                     <Label Grid.Column="0" Grid.Row="8">-45 --</Label>
                     <Label Grid.Column="0" Grid.Row="9">-54 --</Label>
                     <Label Grid.Column="0" Grid.Row="10"></Label>
-                    
+
                     <!-- Volume Bar -->
                     <Grid Grid.Row="0" Grid.Column="1" Grid.RowSpan="11" Width="20" RowDefinitions="23*, 37*">
                         <Rectangle Grid.Row="0" Margin="0, 8, 0, -8" Fill="#b05c4e" Width="20"></Rectangle>
                         <Rectangle Grid.Row="1" Margin="0, 8, 0, 0" Fill="white" Width="20"></Rectangle>
                     </Grid>
-                    
+
                     <Label Grid.Column="2" Grid.Row="0">--</Label>
                     <Label Grid.Column="2" Grid.Row="1">--</Label>
                     <Label Grid.Column="2" Grid.Row="2">--</Label>
@@ -110,47 +128,48 @@
                     <Label Grid.Column="2" Grid.Row="8">--</Label>
                     <Label Grid.Column="2" Grid.Row="9">--</Label>
                     <Label Grid.Column="2" Grid.Row="10"></Label>
-                    
+
                     <!-- Arrow -->
                     <Canvas Grid.Row="0" Grid.Column="3" Grid.RowSpan="11" Width="20">
                         <Rectangle Canvas.Top="0" Fill="white" Width="20" Height="20"></Rectangle>
                     </Canvas>
                 </Grid>
-                
+
                 <!-- LUFS label -->
                 <Label Grid.Row="1" Foreground="White" FontSize="20" HorizontalAlignment="Center" Margin="0, 5">LUFS</Label>
-                
+
                 <!-- Volume bar buttons -->
                 <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Center">
-                    
-                    <StackPanel.Styles>
-                        <Style Selector="Button">
-                            <Setter Property="FontSize" Value="12"></Setter>
-                            <Setter Property="Foreground" Value="White"></Setter>
-                            <Setter Property="Background" Value="#7f98c7"></Setter>
-                            <Setter Property="CornerRadius" Value="20"></Setter>
-                            <Setter Property="Padding" Value="7, 2"></Setter>
-                        </Style>
-                        <Style Selector="Button:pointerover /template/ContentPresenter">
-                            <Setter Property="Background" Value="#98acd0"></Setter>
-                        </Style>
-                        <Style Selector="Button:pointerover /template/ContentPresenter">
-                            <Setter Property="TextBlock.Foreground" Value="white"></Setter>
-                        </Style>
-                    </StackPanel.Styles>
-                    
-                    <Button CornerRadius="30" Width="30" Height="30" Padding="3" Margin="0, 0, 20, 0">
+
+                    <Button Classes="small" CornerRadius="30" Width="30" Height="30" Padding="3" Margin="0, 0, 20, 0">
                         <Image Margin="5,0,2,0" Source="/Assets/Images/UI_DoubleArrow.png"></Image>
                     </Button>
-                    <Button>INT-LRA</Button>
+                    <Button Classes="small">INT-LRA</Button>
                 </StackPanel>
             </Grid>
             <!-- Details Panel -->
-            <Rectangle Grid.Column="1" Fill="#ccc" Width="140"></Rectangle>
+            <StackPanel Grid.Column="1" Width="170" Margin="0,15,10,15">
+                <controls:LargeLabelControl LargeText="-21.1 LUFS" SmallText="SHORT TERM"></controls:LargeLabelControl>
+                <controls:LargeLabelControl LargeText="-20.7 LUFS" SmallText="INTEGRATED" Background="{DynamicResource LightBlueBrush}"></controls:LargeLabelControl>
+                <controls:LargeLabelControl LargeText="9.5 LU" SmallText="LOUDNESS RANGE"></controls:LargeLabelControl>
+                <controls:LargeLabelControl LargeText="11.5LU" SmallText="REALTIME DYNAMICS"></controls:LargeLabelControl>
+                <controls:LargeLabelControl LargeText="20.5 LU" SmallText="AVG. DYNAMIC (PLR)" Margin="0,0,0,13"></controls:LargeLabelControl>
+
+                <controls:LargeLabelControl LargeText="-9.8 LUFS" SmallText="MOMENTARY MAX" Classes="button"></controls:LargeLabelControl>
+                <controls:LargeLabelControl LargeText="-15.1 LUFS" SmallText="SHORT TERM MAX" Classes="button"></controls:LargeLabelControl>
+                <controls:LargeLabelControl LargeText="0.7 dB" SmallText="TRUE PEAK MAX" Classes="button" Margin="0,0,0,10"></controls:LargeLabelControl>
+                
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                    <Button Classes="small" Margin="0,0,20,0">AUTO</Button>
+                    <Button Classes="small" FontSize="20" FontFamily="Arial" Background="{DynamicResource FadedRedBrush}">X</Button>
+                </StackPanel>
+                
+            </StackPanel>
+
             <!-- Graph Panel -->
             <Rectangle Grid.Column="2" Fill="Black"></Rectangle>
         </Grid>
-        
+
         <!--Bottom bar -->
         <Grid Grid.Row="2" Margin="8" ColumnDefinitions="Auto, Auto, *, Auto, Auto, Auto, Auto, Auto">
             <Button Grid.Column="0" Margin="0, 0, 8, 0">Stereo</Button>
@@ -161,5 +180,5 @@
             <Rectangle Grid.Column="6" Fill="Red" Width="30"></Rectangle>
         </Grid>
     </Grid>
-    
+
 </Window>
