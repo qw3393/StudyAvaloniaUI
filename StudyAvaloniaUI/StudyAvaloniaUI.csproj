@@ -26,4 +26,15 @@
         <PackageReference Include="Avalonia.ReactiveUI" Version="0.10.19" />
         <PackageReference Include="XamlNameReferenceGenerator" Version="1.6.1" />
     </ItemGroup>
+
+    <ItemGroup>
+      <Compile Update="Styles\LargeLabelControl.axaml.cs">
+        <DependentUpon>LargeLabelControl.axaml</DependentUpon>
+        <SubType>Code</SubType>
+      </Compile>
+      <Compile Update="Styles\AppDefaultStyles.axaml.cs">
+        <DependentUpon>AppDefaultStyles.axaml</DependentUpon>
+        <SubType>Code</SubType>
+      </Compile>
+    </ItemGroup>
 </Project>
