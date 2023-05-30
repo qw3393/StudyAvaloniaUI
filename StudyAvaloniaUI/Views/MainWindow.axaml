@@ -68,8 +68,8 @@
             </Button>
             <StackPanel Orientation="Horizontal" Grid.Column="2" VerticalAlignment="Center"
                         HorizontalAlignment="Center">
-                <Label FontWeight="Black">AVALONIA</Label>
-                <Label>LOUDNESS METER</Label>
+                <Label Content="{Binding BoldTitle}" FontSize="24" FontWeight="Black" />
+                <Label Content="{Binding RegularTitle}" FontSize="24" />
             </StackPanel>
             <Button Grid.Column="3">
                 <Image Source="/Assets/Images/UI_Exit.png"></Image>
