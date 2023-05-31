@@ -5,6 +5,7 @@ namespace StudyAvaloniaUI.ViewModels;
 public class MainWindowViewModel : ViewModelBase
 {
     private string _boldTitle = "AVALONIA";
+
     public string BoldTitle
     {
         get => _boldTitle;
@@ -17,4 +18,13 @@ public class MainWindowViewModel : ViewModelBase
         get => _regularTitle;
         set => this.RaiseAndSetIfChanged(ref _regularTitle, value);
     }
+
+    private bool _channelConfigurationListIsOpen = false;
+
+    public bool ChannelConfigurationListIsOpen
+    {
+        get => _channelConfigurationListIsOpen;
+        set => this.RaiseAndSetIfChanged(ref _channelConfigurationListIsOpen, value);
+    }
+    public void ChannelConfigurationButtonPressedCommand() => ChannelConfigurationListIsOpen ^= true;
 }
