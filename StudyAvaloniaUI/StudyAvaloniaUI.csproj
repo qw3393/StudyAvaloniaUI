@@ -36,5 +36,9 @@
         <DependentUpon>AppDefaultStyles.axaml</DependentUpon>
         <SubType>Code</SubType>
       </Compile>
+      <Compile Update="Styles\AnimatedPopup.axaml.cs">
+        <DependentUpon>AnimatedPopup.axaml</DependentUpon>
+        <SubType>Code</SubType>
+      </Compile>
     </ItemGroup>
 </Project>
