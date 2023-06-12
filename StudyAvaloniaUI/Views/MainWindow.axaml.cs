@@ -35,7 +35,7 @@ public partial class MainWindow : Window
         // Get relative position of button, in relation to main grid
         var position = mChannelConfigButton.TranslatePoint(new Point(), mMainGrid) ??
                        throw new Exception("Cannot get TranslatePoint from Configuration Button");
-
+        
         // Set margin of popup so it appears bottom left of button
         mChannelConfigPopup.Margin = new Thickness(
             position.X,
@@ -45,5 +45,7 @@ public partial class MainWindow : Window
     }
 
     private void InputElement_OnPointerPressed(object? sender, PointerPressedEventArgs e)
-        => ((MainWindowViewModel)DataContext).ChannelConfigurationButtonPressedCommand();
+    {
+        if (DataContext != null) ((MainWindowViewModel)DataContext).ChannelConfigurationButtonPressedCommand();
+    }
 }
